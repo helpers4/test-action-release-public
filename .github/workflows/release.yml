@@ -1,0 +1,27 @@
+name: Release
+on:
+  workflow_dispatch:
+    inputs:
+      bump:
+        type: choice
+        default: auto
+        options: [auto, patch, minor, major, alpha, beta, rc, resume]
+      dry-run:
+        type: boolean
+        default: false
+      registries:
+        type: choice
+        default: none
+        options: [none, npm]
+permissions: {}
+jobs:
+  checks:
+    uses: ./.github/workflows/ci.yml
+  release:
+    needs: checks
+    uses: helpers4/action-release/.github/workflows/release.yml@e2e-dist
+    permissions: { contents: write, id-token: write, attestations: write, issues: write, pull-requests: write }
+    with:
+      bump: ${{ inputs.bump }}
+      dry-run: ${{ inputs.dry-run }}
+      registries: ${{ inputs.registries }}
