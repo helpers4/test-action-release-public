@@ -17,6 +17,7 @@ permissions: {}
 jobs:
   checks:
     uses: ./.github/workflows/ci.yml
+    permissions: { contents: read }
   release:
     needs: checks
     uses: helpers4/action-release/.github/workflows/release.yml@e2e-dist
