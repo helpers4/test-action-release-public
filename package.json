@@ -1,10 +1,12 @@
 {
   "name": "h4-sandbox-release-test",
-  "version": "0.0.0-development",
+  "version": "0.0.2",
   "description": "Sandbox for helpers4/action-release",
   "license": "LGPL-3.0-or-later",
   "scripts": {
     "build": "node -e \"require('fs').mkdirSync('out',{recursive:true});require('fs').writeFileSync('out/index.js','module.exports = 1;\\n')\""
   },
-  "files": ["out"]
+  "files": [
+    "out"
+  ]
 }
