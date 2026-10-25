@@ -9,6 +9,9 @@ on:
       dry-run:
         type: boolean
         default: false
+      prepare:
+        type: string
+        default: ''
       registries:
         type: choice
         default: none
@@ -26,3 +29,4 @@ jobs:
       bump: ${{ inputs.bump }}
       dry-run: ${{ inputs.dry-run }}
       registries: ${{ inputs.registries }}
+      prepare: ${{ inputs.prepare }}
