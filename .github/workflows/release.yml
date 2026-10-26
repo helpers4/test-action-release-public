@@ -23,7 +23,7 @@ jobs:
     permissions: { contents: read }
   release:
     needs: checks
-    uses: helpers4/action-release/.github/workflows/release.yml@e2e-dist
+    uses: helpers4/action-release/.github/workflows/release.yml@v0
     permissions: { contents: write, id-token: write, attestations: write, issues: write, pull-requests: write }
     with:
       bump: ${{ inputs.bump }}
