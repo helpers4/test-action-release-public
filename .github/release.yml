@@ -1,4 +1,0 @@
-# Real releases of the sandbox: no registry, only the commit on main, the tag and the Release.
-version-files: [package.json]
-since:
-  json: [api-since.json]
