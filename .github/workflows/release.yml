@@ -9,46 +9,28 @@ on:
       dry-run:
         type: boolean
         default: false
-      prepare:
-        type: string
-        default: ''
-      registries:
+      config:
         type: choice
-        default: none
-        options: [none, npm]
+        default: .github/release.yml
+        options: [.github/release.yml, .github/release-all.yml]
 permissions: {}
 jobs:
   checks:
     uses: ./.github/workflows/ci.yml
     permissions: { contents: read }
-
-  build:
+  release:
     needs: checks
     runs-on: ubuntu-latest
-    permissions: { contents: read }
+    permissions: { contents: write, id-token: write }
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with: { fetch-depth: 0, persist-credentials: false }
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
-        with: { node-version: lts/* }
-      - uses: helpers4/action-release@v0
+        with: { node-version: 24 }
+      - uses: helpers4/action-release@feat/rewrite   # the action under test
         with:
-          mode: build
-          bump: ${{ inputs.bump }}
-          registries: ${{ inputs.registries }}
-          prepare: ${{ inputs.prepare }}
-
-  publish:
-    needs: build
-    runs-on: ubuntu-latest
-    concurrency: { group: "release-${{ github.repository }}", cancel-in-progress: false }
-    permissions: { contents: write, id-token: write, attestations: write, issues: write, pull-requests: write }
-    steps:
-      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
-        with: { node-version: lts/* }
-      - uses: helpers4/action-release@v0
-        with:
-          mode: publish
           bump: ${{ inputs.bump }}
           dry-run: ${{ inputs.dry-run }}
-          registries: ${{ inputs.registries }}
+          config: ${{ inputs.config }}
+          app-id: ${{ vars.HELPERS4_BOT_ID }}
+          app-key: ${{ secrets.HELPERS4_BOT_KEY }}
