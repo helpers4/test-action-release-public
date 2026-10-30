@@ -1,7 +1,10 @@
 [package]
 name = "h4-sandbox-release-test"
-version = "0.0.6"
-edition = "2021"
+version.workspace = true
+edition.workspace = true
 description = "Sandbox for helpers4/action-release"
-license = "LGPL-3.0-or-later"
-repository = "https://github.com/helpers4/test-action-release-public"
+license.workspace = true
+repository.workspace = true
+
+[dependencies]
+h4-sandbox-release-test-core.workspace = true

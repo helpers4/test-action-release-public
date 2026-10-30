@@ -27,12 +27,12 @@ jobs:
         with: { fetch-depth: 0, persist-credentials: false }
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with: { node-version: 24 }
-      - uses: helpers4/action-release@v0   # replace with a branch to test it
+      - uses: helpers4/action-release@feat/cargo-workspace   # the action under test
         with:
           bump: ${{ inputs.bump }}
           dry-run: ${{ inputs.dry-run }}
           version-files: package.json
           since-json: api-since.json
-          targets: "${{ inputs.all-registries && '[{ npm: packages/npm }, { crates: crates/sandbox }, { jsr: jsr }]' || '' }}"
+          targets: "${{ inputs.all-registries && '[{ npm: packages/npm }, { crates: . }, { jsr: jsr }]' || '' }}"
           app-id: ${{ vars.HELPERS4_BOT_ID }}
           app-key: ${{ secrets.HELPERS4_BOT_KEY }}

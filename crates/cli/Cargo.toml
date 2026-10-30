@@ -1,0 +1,11 @@
+[package]
+name = "h4-sandbox-release-test-cli"
+version.workspace = true
+edition.workspace = true
+description = "Command line of the sandbox for helpers4/action-release"
+license.workspace = true
+repository.workspace = true
+
+[dependencies]
+h4-sandbox-release-test-core.workspace = true
+h4-sandbox-release-test.workspace = true

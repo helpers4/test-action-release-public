@@ -1,0 +1,10 @@
+[package]
+name = "h4-sandbox-release-test-private"
+version.workspace = true
+edition.workspace = true
+description = "Never published"
+license.workspace = true
+repository.workspace = true
+publish = false
+[dependencies]
+h4-sandbox-release-test.workspace = true

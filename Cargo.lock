@@ -4,4 +4,26 @@ version = 4
 
 [[package]]
 name = "h4-sandbox-release-test"
-version = "0.0.6"
+version = "0.0.8"
+dependencies = [
+ "h4-sandbox-release-test-core",
+]
+
+[[package]]
+name = "h4-sandbox-release-test-cli"
+version = "0.0.8"
+dependencies = [
+ "h4-sandbox-release-test",
+ "h4-sandbox-release-test-core",
+]
+
+[[package]]
+name = "h4-sandbox-release-test-core"
+version = "0.0.8"
+
+[[package]]
+name = "h4-sandbox-release-test-private"
+version = "0.0.8"
+dependencies = [
+ "h4-sandbox-release-test",
+]
