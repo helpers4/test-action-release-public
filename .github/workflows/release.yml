@@ -9,10 +9,10 @@ on:
       dry-run:
         type: boolean
         default: false
-      config:
-        type: choice
-        default: .github/release.yml
-        options: [.github/release.yml, .github/release-all.yml]
+      all-registries:
+        description: Dry-run npm, crates and JSR (only with dry-run)
+        type: boolean
+        default: false
 permissions: {}
 jobs:
   checks:
@@ -27,10 +27,12 @@ jobs:
         with: { fetch-depth: 0, persist-credentials: false }
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with: { node-version: 24 }
-      - uses: helpers4/action-release@feat/rewrite   # the action under test
+      - uses: helpers4/action-release@fix/detached-tags   # the action under test
         with:
           bump: ${{ inputs.bump }}
           dry-run: ${{ inputs.dry-run }}
-          config: ${{ inputs.config }}
+          version-files: package.json
+          since-json: api-since.json
+          targets: ${{ inputs.all-registries && '[{ npm: packages/npm }, { crates: crates/sandbox }, { jsr: jsr }]' || '' }}
           app-id: ${{ vars.HELPERS4_BOT_ID }}
           app-key: ${{ secrets.HELPERS4_BOT_KEY }}
