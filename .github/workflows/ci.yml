@@ -5,7 +5,8 @@ on:
 permissions:
   contents: read
 jobs:
-  noop:
+  required:
+    name: Required checks passed
     runs-on: ubuntu-latest
     steps:
       - run: echo blockers go here

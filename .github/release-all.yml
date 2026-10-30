@@ -1,0 +1,8 @@
+# Dry-runs only: every registry, with its standard tool.
+targets:
+  - npm: packages/npm
+  - crates: crates/sandbox
+  - jsr: jsr
+version-files: [package.json]
+since:
+  json: [api-since.json]
