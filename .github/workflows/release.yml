@@ -33,6 +33,6 @@ jobs:
           dry-run: ${{ inputs.dry-run }}
           version-files: package.json
           since-json: api-since.json
-          targets: ${{ inputs.all-registries && '[{ npm: packages/npm }, { crates: crates/sandbox }, { jsr: jsr }]' || '' }}
+          targets: "${{ inputs.all-registries && '[{ npm: packages/npm }, { crates: crates/sandbox }, { jsr: jsr }]' || '' }}"
           app-id: ${{ vars.HELPERS4_BOT_ID }}
           app-key: ${{ secrets.HELPERS4_BOT_KEY }}
